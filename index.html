@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Olímpicos Fariñas '24</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash/4.17.21/lodash.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div id="last-updated" class="last-updated">Última actualización: 27/12/24 </div>
+            <h1>JUEGOS OLÍMPICOS</h1>
+            <div class="subtitle">FARIÑAS '24</div>
+        </header>
+
+        <div id="main-menu">
+            <div class="players-button-container">
+                <button class="players-button" onclick="showGame('jugadores')">JUGADORES</button>
+            </div>
+
+            <div class="games-grid">
+                <div class="game-card pp" onclick="showGame('ping pong')">
+                    <img src="icons/icon1.svg" alt="Ping Pong" class="game-icon">
+                    <div class="game-name">PING PONG</div>
+                </div>
+                <div class="game-card ft" onclick="showGame('futbolin')">
+                    <img src="icons/icon2.svg" alt="Futbolin" class="game-icon">
+                    <div class="game-name">FUTBOLÍN</div>
+                </div>
+                <div class="game-card sp" onclick="showGame('sapo')">
+                    <img src="icons/icon3.svg" alt="Sapo" class="game-icon">
+                    <div class="game-name">SAPO</div>
+                </div>
+                <div class="game-card ag" onclick="showGame('argollas')">
+                    <img src="icons/icon4.svg" alt="Argolas" class="game-icon">
+                    <div class="game-name">ARGOLLAS</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-view" class="game-content">
+            <button class="back-button" onclick="showMainMenu()">
+                <img src="icons/icon5.svg" alt="Volver" class="back-icon">
+            </button>
+            <h2 id="game-title" class="subtitle game-title-style"></h2>
+            <div id="game-table"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

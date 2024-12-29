@@ -148,8 +148,6 @@ const utils = {
     }
 };
 
-document.body.classList.add('no-scroll');
-
 // Controladores de vista
 const viewControllers = {
     showMainMenu() {
@@ -158,7 +156,6 @@ const viewControllers = {
         document.getElementById('main-menu').style.display = 'block';
         document.getElementById('game-view').style.display = 'none';
         document.querySelector('header').classList.remove('header-small');
-        document.body.classList.add('no-scroll');
     },
 
     showGame(game) {
@@ -196,20 +193,30 @@ const viewControllers = {
         const statsContainer = document.createElement('div');
         statsContainer.className = 'player-stats';
 
+        // Obtener las posiciones
+        const pingPongRankings = this.calculatePingPongRankings();
+        const futbolinRankings = this.calculateFutbolinRankings();
+        const sapoRankings = this.calculateSapoRankings();
+        const argollasRankings = this.calculateArgollasRankings();
+
         gameState.players.forEach(player => {
             const stats = utils.calculatePlayerStats(player.id);
-            const winRate = stats.totalGames ? ((stats.wins / stats.totalGames) * 100).toFixed(1) : 0;
+            const pingPongPosition = pingPongRankings[player.id];
+            const futbolinPosition = futbolinRankings[player.id];
+            const sapoPosition = sapoRankings[player.id];
+            const argollasPosition = argollasRankings[player.id];
 
             const playerCard = document.createElement('div');
             playerCard.className = 'player-card';
             playerCard.innerHTML = `
                 <div class="player-name">${player.name}</div>
                 <div class="player-info">
-                    <p>Victorias Ping Pong: <span>${stats.pingPongWins}</span></p>
-                    <p>Victorias Futbolín: <span>${stats.futbolinWins}</span></p>
-                    <p>Puntaje Sapo: <span>${stats.sapoTScore}</span></p>
-                    <p>Puntaje Argollas: <span>${stats.argollasTScore}</span></p>
+                    <p>Victorias Ping Pong: <span>${stats.pingPongWins} (${pingPongPosition}º)</span></p>
+                    <p>Victorias Futbolín: <span>${stats.futbolinWins} (${futbolinPosition}º)</span></p>
+                    <p>Puntaje Sapo: <span>${stats.sapoTScore} (${sapoPosition}º)</span></p>
+                    <p>Puntaje Argollas: <span>${stats.argollasTScore} (${argollasPosition}º)</span></p>
                 </div>
+                <div class="player-total">Total: &nbsp;<span> ${60-pingPongPosition-futbolinPosition-sapoPosition-argollasPosition}</span></div>
             `;
             
             statsContainer.appendChild(playerCard);
@@ -217,6 +224,157 @@ const viewControllers = {
 
         container.innerHTML = '';
         container.appendChild(statsContainer);
+    },
+
+    calculatePingPongRankings() {
+        // Calcular victorias para cada jugador
+        const pingPongScores = gameState.players.map(player => {
+            const stats = utils.calculatePlayerStats(player.id);
+            return {
+                playerId: player.id,
+                wins: stats.pingPongWins
+            };
+        });
+
+        // Agrupar jugadores por número de victorias
+        const scoreGroups = {};
+        pingPongScores.forEach(score => {
+            if (!scoreGroups[score.wins]) {
+                scoreGroups[score.wins] = [];
+            }
+            scoreGroups[score.wins].push(score.playerId);
+        });
+
+        // Ordenar las victorias de mayor a menor
+        const sortedWins = Object.keys(scoreGroups)
+            .map(Number)
+            .sort((a, b) => b - a);
+
+        // Asignar posiciones
+        const rankings = {};
+        let currentPosition = 1;
+
+        sortedWins.forEach(wins => {
+            // Asignar la misma posición a todos los jugadores con el mismo número de victorias
+            scoreGroups[wins].forEach(playerId => {
+                rankings[playerId] = currentPosition;
+            });
+            // La siguiente posición será el siguiente número después del actual
+            currentPosition++;
+        });
+
+        return rankings;
+    },
+
+    calculateFutbolinRankings() {
+        // Calcular victorias para cada jugador
+        const futbolinScores = gameState.players.map(player => {
+            const stats = utils.calculatePlayerStats(player.id);
+            return {
+                playerId: player.id,
+                wins: stats.futbolinWins
+            };
+        });
+
+        // Agrupar jugadores por número de victorias
+        const scoreGroups = {};
+        futbolinScores.forEach(score => {
+            if (!scoreGroups[score.wins]) {
+                scoreGroups[score.wins] = [];
+            }
+            scoreGroups[score.wins].push(score.playerId);
+        });
+
+        // Ordenar las victorias de mayor a menor
+        const sortedWins = Object.keys(scoreGroups)
+            .map(Number)
+            .sort((a, b) => b - a);
+
+        // Asignar posiciones
+        const rankings = {};
+        let currentPosition = 1;
+
+        sortedWins.forEach(wins => {
+            // Asignar la misma posición a todos los jugadores con el mismo número de victorias
+            scoreGroups[wins].forEach(playerId => {
+                rankings[playerId] = currentPosition;
+            });
+            // La siguiente posición será el siguiente número después del actual
+            currentPosition++;
+        });
+
+        return rankings;
+    },
+
+    calculateSapoRankings() {
+        // Obtener scores de sapo y ordenarlos
+        const sapoScores = gameState.scores['sapo'].data
+            .map(score => ({
+                playerId: score.playerId,
+                total: score.total
+            }))
+            .sort((a, b) => b.total - a.total); // Ordenar de mayor a menor
+
+        // Crear objeto con playerId: posición
+        const rankings = {};
+        let currentPosition = 1;
+        let previousScore = null;
+        let samePositionCount = 0;
+
+        sapoScores.forEach((score, index) => {
+            // Si el puntaje es igual al anterior, mantener la misma posición
+            if (previousScore === score.total) {
+                samePositionCount++;
+            } else {
+                currentPosition = index + 1;
+                samePositionCount = 0;
+            }
+            
+            rankings[score.playerId] = currentPosition;
+            previousScore = score.total;
+        });
+
+        return rankings;
+    },
+
+    calculateArgollasRankings() {
+        // Calcular victorias para cada jugador
+        const argollasScores = gameState.players.map(player => {
+            const playerData = gameState.scores['argollas'].data.find(d => d.playerId === player.id);
+            return {
+                playerId: player.id,
+                score: playerData && playerData.shots.length > 0 ? playerData.shots[0] || 0 : 0
+            };
+        });
+
+        // Agrupar jugadores por puntaje
+        const scoreGroups = {};
+        argollasScores.forEach(score => {
+            if (!scoreGroups[score.score]) {
+                scoreGroups[score.score] = [];
+            }
+            scoreGroups[score.score].push(score.playerId);
+        });
+
+        // Ordenar los puntajes de mayor a menor
+        const sortedScores = Object.keys(scoreGroups)
+            .map(Number)
+            .sort((a, b) => b - a);
+
+        // Asignar posiciones
+        const rankings = {};
+        let currentPosition = 1;
+
+        sortedScores.forEach(score => {
+            // Asignar la misma posición a todos los jugadores con el mismo puntaje
+            scoreGroups[score].forEach(playerId => {
+                rankings[playerId] = currentPosition;
+            });
+            // La siguiente posición será el siguiente número después del actual
+            currentPosition++;
+        });
+
+        return rankings;
     },
 
     renderGameTable(gameName) {

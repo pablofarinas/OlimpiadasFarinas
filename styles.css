@@ -20,9 +20,6 @@ body {
     min-height: 100vh;
 }
 
-.no-scroll {
-    overflow: hidden;
-}
 
 .container {
     height: 100%;
@@ -59,6 +56,7 @@ h1 {
 .last-updated {
     font-size: 0.8em;
     color: #666;
+    margin-top: 0.5vw;
     margin-bottom: 5px;
 }
 
@@ -103,6 +101,10 @@ h1 {
 }
 
 .game-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-radius: 20px;
     padding: 24px;
     text-align: center;
@@ -291,4 +293,11 @@ table tr:not(:first-child) th:last-child, table td:last-child {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
+}
+
+.player-total {
+    font-size: 1em;
+    margin: 5px 0;
+    display: flex;
+    font-weight: 700;
 }

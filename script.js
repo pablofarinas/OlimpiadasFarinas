@@ -24,38 +24,38 @@ const gameState = {
             type: 'matrix',
             data: {
                 1: { 2: 0, 3: 0, 4: 0, 8: 0, 9: 1, 10: 1, 11: 0, 12: 0, 13: 1, 14: 1 },
-                2: { 1: 1, 3: 1, 4: 0, 6: 1, 7: 1, 8: 0, 9: 0, 10: 1, 11: 0, 12: 1, 13: 1, 14: 1 },
-                3: { 1: 1, 2: 0, 4: 0, 6: 1, 7: 1, 8: 0, 9: 1, 10: 1, 11: 0, 12: 1, 13: 1, 14: 1 },
-                4: { 1: 1, 2: 1, 3: 1, 5: 0, 6: 0, 7: 1, 9: 1, 11: 0, 14: 1 },
-                5: { 4: 1, 14: 1 },
-                6: { 2: 0, 3: 0, 4: 1, 7: 1 },
-                7: { 2: 0, 3: 0, 4: 0, 6: 0, 11: 0 },
+                2: { 1: 1, 3: 1, 4: 0, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 1, 11: 0, 12: 1, 13: 1, 14: 1 },
+                3: { 1: 1, 2: 0, 4: 0, 5: 0, 6: 1, 7: 1, 8: 0, 9: 1, 10: 1, 11: 0, 12: 1, 13: 1, 14: 1 },
+                4: { 1: 1, 2: 1, 3: 1, 5: 0, 6: 0, 7: 1, 9: 1, 10: 1, 11: 0, 13: 1, 14: 1 },
+                5: { 3: 1, 4: 1, 6: 0, 11: 0, 13: 1,  14: 1 },
+                6: { 2: 0, 3: 0, 4: 1, 5: 1, 7: 1, 11: 0, 13: 1, 14: 0 },
+                7: { 2: 0, 3: 0, 4: 0, 6: 0, 11: 0, 14: 0},
                 8: { 1: 1, 2: 1, 3: 1 },
                 9: { 1: 0, 2: 1, 3: 0, 4: 0, 11: 0 },
-                10: { 1: 0, 2: 0, 3: 0 },
-                11: { 1: 1, 2: 1, 3: 1, 4: 1, 7: 1, 9: 1, 12: 1, 14: 1 },
-                12: { 1: 1, 2: 0, 3: 0, 11: 0 },
-                13: { 1: 0, 2: 0, 3: 0 },
-                14: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 11: 0 }
+                10: { 1: 0, 2: 0, 3: 0, 4: 0, 11: 0 },
+                11: { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 9: 1, 10: 1, 12: 1, 14: 1 },
+                12: { 1: 1, 2: 0, 3: 0,  11: 0 },
+                13: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 14: 0},
+                14: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 1, 7: 1, 11: 0, 13: 1 }
             }
         },
         'futbolin': {
             type: 'matrix',
             data: {
                 1: { 2: 0, 3: 1, 4: 0, 7: 0, 9: 0, 10: 1, 11: 0, 12: 1, 14: 1 },
-                2: { 1: 1, 3: 1, 4: 0, 7: 1, 9: 0, 10: 1, 11: 0, 13: 0, 14: 1 },
-                3: { 1: 0, 2: 0, 4: 1, 7: 1, 10: 1, 11: 1, 14: 1 },
-                4: { 1: 1, 2: 1, 3: 0, 5: 1, 6: 1, 7: 1, 10: 1, 11: 0 },
-                5: { 4: 0, 6: 1},
-                6: { 4: 0, 5: 0 },
-                7: { 1: 1, 2: 0, 3: 0, 4: 0, 10: 1, 12: 1, 13: 0 },
+                2: { 1: 1, 3: 1, 4: 0, 5: 1, 6: 1, 7: 1, 9: 0, 10: 1, 11: 0, 13: 0, 14: 1 },
+                3: { 1: 0, 2: 0, 4: 1, 5: 1, 6: 1, 7: 1, 10: 1, 11: 1, 13: 0, 14: 1 },
+                4: { 1: 1, 2: 1, 3: 0, 5: 1, 6: 1, 7: 1, 10: 1, 11: 0, 13: 0, 14: 1 },
+                5: { 2: 0, 3: 0, 4: 0, 6: 1, 11: 0, 13: 0, 14: 1},
+                6: { 2: 0, 3: 0, 4: 0, 5: 0, 7: 0, 11: 0, 13: 0 },
+                7: { 1: 1, 2: 0, 3: 0, 4: 0, 6: 1, 10: 1, 11: 0, 12: 1, 13: 0 },
                 8: { },
                 9: { 1: 1, 2: 1, 11: 0 },
                 10: { 1: 0, 2: 0, 3: 0, 4: 0, 7: 0, 11: 0 },
-                11: { 1: 1, 2: 1, 3: 0, 4: 1, 9: 1, 10: 1 },
+                11: { 1: 1, 2: 1, 3: 0, 4: 1, 5: 1, 6: 1, 7: 1, 9: 1, 10: 1, 13: 1, 14: 1 },
                 12: { 1: 0, 7: 0 },
-                13: { 2: 1, 7: 1},
-                14: { 1: 0, 2: 0, 3: 0 }
+                13: { 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 11: 0, 14: 1 },
+                14: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 11: 0, 13: 0 }
             }
         },
         'sapo': {
@@ -80,19 +80,19 @@ const gameState = {
         'argollas': {
             type: 'shots2',
             data: [
-                { playerId: 1, shots: [] },
-                { playerId: 2, shots: [] },
-                { playerId: 3, shots: [] },
+                { playerId: 1, shots: [1] },
+                { playerId: 2, shots: [6] },
+                { playerId: 3, shots: [1] },
                 { playerId: 4, shots: [2] },
                 { playerId: 5, shots: [0] },
                 { playerId: 6, shots: [4] },
                 { playerId: 7, shots: [4] },
                 { playerId: 8, shots: [] },
                 { playerId: 9, shots: [] },
-                { playerId: 10, shots: [] },
-                { playerId: 11, shots: [] },
+                { playerId: 10, shots: [3] },
+                { playerId: 11, shots: [4] },
                 { playerId: 12, shots: [] },
-                { playerId: 13, shots: [] },
+                { playerId: 13, shots: [3] },
                 { playerId: 14, shots: [1] }
             ]
         }
@@ -199,28 +199,47 @@ const viewControllers = {
         const sapoRankings = this.calculateSapoRankings();
         const argollasRankings = this.calculateArgollasRankings();
 
-        gameState.players.forEach(player => {
+        // Calcular la suma de las posiciones para cada jugador
+        const playerStats = gameState.players.map(player => {
             const stats = utils.calculatePlayerStats(player.id);
             const pingPongPosition = pingPongRankings[player.id];
             const futbolinPosition = futbolinRankings[player.id];
             const sapoPosition = sapoRankings[player.id];
             const argollasPosition = argollasRankings[player.id];
+            const totalPosition = pingPongPosition + futbolinPosition + sapoPosition + argollasPosition;
 
-            const playerCard = document.createElement('div');
-            playerCard.className = 'player-card';
-            playerCard.innerHTML = `
-                <div class="player-name">${player.name}</div>
-                <div class="player-info">
-                    <p>Victorias Ping Pong: <span>${stats.pingPongWins} (${pingPongPosition}º)</span></p>
-                    <p>Victorias Futbolín: <span>${stats.futbolinWins} (${futbolinPosition}º)</span></p>
-                    <p>Puntaje Sapo: <span>${stats.sapoTScore} (${sapoPosition}º)</span></p>
-                    <p>Puntaje Argollas: <span>${stats.argollasTScore} (${argollasPosition}º)</span></p>
-                </div>
-                <div class="player-total">Total: &nbsp;<span> ${60-pingPongPosition-futbolinPosition-sapoPosition-argollasPosition}</span></div>
-            `;
-            
-            statsContainer.appendChild(playerCard);
+            return {
+                player,
+                stats,
+                pingPongPosition,
+                futbolinPosition,
+                sapoPosition,
+                argollasPosition,
+                totalPosition
+            };
         });
+
+        // Ordenar los jugadores por la suma de sus posiciones
+    playerStats.sort((a, b) => a.totalPosition - b.totalPosition);
+
+    // Renderizar las tarjetas de los jugadores
+    playerStats.forEach(playerStat => {
+        const { player, stats, pingPongPosition, futbolinPosition, sapoPosition, argollasPosition, totalPosition } = playerStat;
+        const playerCard = document.createElement('div');
+        playerCard.className = 'player-card';
+        playerCard.innerHTML = `
+            <div class="player-name">${player.name}</div>
+            <div class="player-info">
+                <p>Victorias Ping Pong: <span>${stats.pingPongWins} (${pingPongPosition}º)</span></p>
+                <p>Victorias Futbolín: <span>${stats.futbolinWins} (${futbolinPosition}º)</span></p>
+                <p>Puntaje Sapo: <span>${stats.sapoTScore} (${sapoPosition}º)</span></p>
+                <p>Puntaje Argollas: <span>${stats.argollasTScore} (${argollasPosition}º)</span></p>
+            </div>
+            <div class="player-total">Total: &nbsp;<span>${60-totalPosition}</span></div>
+        `;
+        
+        statsContainer.appendChild(playerCard);
+    });
 
         container.innerHTML = '';
         container.appendChild(statsContainer);
@@ -460,7 +479,7 @@ const viewControllers = {
                 if (score.shots) {
                     row.innerHTML = `
                     <td>${utils.getPlayerName(score.playerId)}</td>
-                    <td class="score-cell">${score.shots[0] || ''}</td>
+                    <td class="score-cell">${score.shots[0] !== undefined ? score.shots[0] : ''}</td>
                 `;
                 } else {
                     row.innerHTML = `
